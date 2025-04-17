@@ -11,7 +11,6 @@ import org.mindrot.jbcrypt.BCrypt;
 public class UserDAO {
     public Connection connection;
     public boolean loginSuccess = false;
-    public boolean connectionStatus = false;
 
     //constructor
     public UserDAO(Connection connection) {
@@ -20,7 +19,7 @@ public class UserDAO {
 
 
     public void addUser(User user) throws SQLException {
-        String sql = "INSERT INTO users(username, password, email, phoneNumber, address, role) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO users(username, password, email, phonenumber, address, role) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
@@ -29,7 +28,8 @@ public class UserDAO {
             statement.setString(5, user.getAddress());
             statement.setString(6, user.getRole());
             statement.executeUpdate();
-        } catch (Exception e) {
+            System.out.println("Account Registered!");
+        }  catch (Exception e) {
             System.err.println("Database connection failed");
         }
     }
@@ -40,12 +40,9 @@ public class UserDAO {
         try (var statement = connection.createStatement();
             var result = statement.executeQuery(sql)) {
 
-            connectionStatus = true;
-
             while (result.next()) {
                 if (result.getString("username").equals(username)
                     && BCrypt.checkpw(password, result.getString("password"))) {
-                    loginSuccess = true;
                     loggedUser = new User(result.getString("username"),
                     password,
                     result.getString("email"),
@@ -58,7 +55,6 @@ public class UserDAO {
             return loggedUser;
         } catch (Exception e) {
             System.err.println("Database connection failed");
-            connectionStatus = false;
         }
         return loggedUser;
     }
@@ -71,13 +67,12 @@ public class UserDAO {
         }
     }
 
-    public List<User> getAllUsers() throws Exception {
+    public List<User> getAllUsers() {
         String sql = "SELECT * FROM users";
         List<User> userList = new ArrayList<>();
         try (var statement = connection.createStatement();
             var result = statement.executeQuery(sql)) {
 
-                connectionStatus = true;
                 while (result.next()) {
                     User listUser = new User(result.getString("username"),
                     result.getString("password"),
@@ -90,7 +85,8 @@ public class UserDAO {
 
             return userList;
         } catch (Exception e) {
-            throw new Exception("Database connection failed");   
+            System.err.println("Database connection failed");  
+            return userList; 
         }
     }
 }

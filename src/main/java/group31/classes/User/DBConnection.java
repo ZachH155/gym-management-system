@@ -3,7 +3,7 @@ package group31.classes.User;
 import java.sql.*;
 
 public class DBConnection {
-    private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String URL = "jdbc:postgresql://localhost:5432/postgres2";
     private static final String USER = "postgres";
     private static final String PASSWORD = "Keyin2021";
 

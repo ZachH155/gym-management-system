@@ -16,7 +16,7 @@ public class UserService {
     }
 
     // methods
-    public void addUser(User user) throws Exception {
+    public void addUser(User user) throws SQLException {
         if (user == null) {
             System.out.println("User obj null");
             return;
@@ -25,13 +25,9 @@ public class UserService {
         String hashPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         User newUser = new User(user.getUsername(), hashPassword, user.getEmail(), user.getPhoneNumber(), user.getAddress(), user.getRole());
         DAO.addUser(newUser);
-
-        if (DAO.connectionStatus) {
-            System.out.println("Account registered!");
-        }
     }
 
-    public User getUser(String username, String password) throws Exception {
+    public User getUser(String username, String password) throws SQLException {
         if (username == null || password == null) {
             System.out.println("Enter a username and password");
             return null;
@@ -39,11 +35,11 @@ public class UserService {
         return DAO.getUser(username, password);
     }
 
-    public List<User> getAllUsers() throws Exception {
+    public List<User> getAllUsers() throws SQLException {
         return DAO.getAllUsers();
     }
 
-    public void deleteUser(int userId) throws Exception {
+    public void deleteUser(int userId) throws SQLException {
         DAO.deleteUser(userId);
     }
 

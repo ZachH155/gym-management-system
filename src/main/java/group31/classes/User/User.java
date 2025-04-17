@@ -10,12 +10,12 @@ public class User {
 
     //constructor
     public User() {
-        username = "Missing";
-        password = "Missing";
-        email = "Missing";
-        phoneNumber = "Missing";
-        address = "Missing";
-        role = "member";
+        username = "missing";
+        password = "missing";
+        email = "missing";
+        phoneNumber = "missing";
+        address = "missing";
+        role = "missing";
     }
 
 
