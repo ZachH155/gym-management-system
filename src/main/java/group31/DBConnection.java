@@ -1,4 +1,4 @@
-package group31.classes.User;
+package group31;
 
 import java.sql.*;
 
