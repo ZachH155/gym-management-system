@@ -39,8 +39,8 @@ public class UserService {
         return DAO.getAllUsers();
     }
 
-    public void deleteUser(int userId) throws SQLException {
-        DAO.deleteUser(userId);
+    public void deleteUser(String username) throws SQLException {
+        DAO.deleteUser(username);
     }
 
 }

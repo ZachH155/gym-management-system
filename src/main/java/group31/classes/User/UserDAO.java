@@ -59,10 +59,10 @@ public class UserDAO {
         return loggedUser;
     }
 
-    public void deleteUser(int userId) throws SQLException {
-        String sql = "DELETE FROM users WHERE id = ?";
+    public void deleteUser(String username) throws SQLException {
+        String sql = "DELETE FROM users WHERE username = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, userId);
+            statement.setString(1, username);
             statement.executeUpdate();
         }
     }
