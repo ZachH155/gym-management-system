@@ -14,7 +14,7 @@ public class WorkoutClass {
         description = "missing";
     }
 
-    public WorkoutClass(String trainer, String title, String description) {
+    public WorkoutClass(String title, String trainer, String description) {
         this.title = title;
         this.trainer = trainer;
         this.description = description;

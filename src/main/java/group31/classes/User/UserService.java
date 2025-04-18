@@ -35,6 +35,14 @@ public class UserService {
         return DAO.getUser(username, password);
     }
 
+    public User getUser(String username) throws SQLException {
+        if (username == null) {
+            System.out.println("Enter a username");
+            return null;
+        }
+        return DAO.getUser(username);
+    }
+
     public List<User> getAllUsers() throws SQLException {
         return DAO.getAllUsers();
     }

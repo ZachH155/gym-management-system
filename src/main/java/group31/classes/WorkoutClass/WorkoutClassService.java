@@ -30,8 +30,12 @@ public class WorkoutClassService {
         return DAO.getWorkoutClass(title, trainer);
     }
 
-    public List<WorkoutClass> getAllWorkoutClasss() throws SQLException {
+    public List<WorkoutClass> getAllWorkoutClasses() throws SQLException {
         return DAO.getAllWorkoutClasses();
+    }
+
+    public List<WorkoutClass> getAllWorkoutClassesTrainer(String trainer) throws SQLException {
+        return DAO.getAllWorkoutClassesTrainer(trainer);
     }
 
     public void deleteWorkoutClass(String title) throws SQLException {

@@ -58,6 +58,30 @@ public class UserDAO {
         return loggedUser;
     }
 
+    public User getUser(String username) throws SQLException {
+        User loggedUser = new User();
+        String sql = "SELECT * FROM users";
+        try (var statement = connection.createStatement();
+            var result = statement.executeQuery(sql)) {
+
+            while (result.next()) {
+                if (result.getString("username").equals(username)) {
+                    loggedUser = new User(result.getString("username"),
+                    result.getString("password"),
+                    result.getString("email"),
+                    result.getString("phoneNumber"),
+                    result.getString("address"),
+                    result.getString("role"));
+                    break;
+                }
+            }
+            return loggedUser;
+        } catch (Exception e) {
+            System.err.println("Database connection failed");
+        }
+        return loggedUser;
+    }
+
     public void deleteUser(String username) throws SQLException {
         String sql = "DELETE FROM users WHERE username = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
