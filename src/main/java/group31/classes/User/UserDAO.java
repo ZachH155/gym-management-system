@@ -10,7 +10,6 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class UserDAO {
     public Connection connection;
-    public boolean loginSuccess = false;
 
     //constructor
     public UserDAO(Connection connection) {
