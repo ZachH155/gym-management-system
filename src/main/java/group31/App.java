@@ -461,7 +461,10 @@ public class App
                                     System.out.println();
                                     System.out.println();
                                     System.out.println();
-                                    workoutClassService.getWorkoutClass(title, loggedUser.getUsername());
+                                    System.out.println("Title: " + workoutClassService.getWorkoutClass(title, loggedUser.getUsername()).getTitle());
+                                    System.out.println("Trainer: " + workoutClassService.getWorkoutClass(title, loggedUser.getUsername()).getTrainer());
+                                    System.out.println("Description: " + workoutClassService.getWorkoutClass(title, loggedUser.getUsername()).getDescription());
+                                    System.out.println();
                                     System.out.println();
                                     System.out.println("Is this the Workout Class you want to delete?");
                                     System.out.println();
